@@ -1,24 +1,54 @@
-<br>
-<font size="1"><table class="xdebug-error xe-uncaught-exception" dir="ltr" border="1" cellspacing="0" cellpadding="1">
-<tr><th align="left" bgcolor="#f57900" colspan="5">
-<span style="background-color: #cc0000; color: #fce94f; font-size: x-large;">( ! )</span> Fatal error: Uncaught Error: Class "Simply_Static\Integration" not found in D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\integrations\class-rank-math-integration.php on line <i>7</i>
-</th></tr>
-<tr><th align="left" bgcolor="#f57900" colspan="5">
-<span style="background-color: #cc0000; color: #fce94f; font-size: x-large;">( ! )</span> Error: Class "Simply_Static\Integration" not found in D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\integrations\class-rank-math-integration.php on line <i>7</i>
-</th></tr>
-<tr><th align="left" bgcolor="#e9b96e" colspan="5">Call Stack</th></tr>
-<tr>
-<th align="center" bgcolor="#eeeeec">#</th>
-<th align="left" bgcolor="#eeeeec">Time</th>
-<th align="left" bgcolor="#eeeeec">Memory</th>
-<th align="left" bgcolor="#eeeeec">Function</th>
-<th align="left" bgcolor="#eeeeec">Location</th>
-</tr>
-<tr>
-<td bgcolor="#eeeeec" align="center">1</td>
-<td bgcolor="#eeeeec" align="center">0.0002</td>
-<td bgcolor="#eeeeec" align="right">361336</td>
-<td bgcolor="#eeeeec">{main}(  )</td>
-<td title="D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\integrations\class-rank-math-integration.php" bgcolor="#eeeeec">...\class-rank-math-integration.php<b>:</b>0</td>
-</tr>
-</table></font>
+<?php
+
+namespace Simply_Static;
+
+use RankMath\Sitemap\Router;
+
+class Rank_Math_Integration extends Integration {
+	/**
+	 * Given plugin handler ID.
+	 *
+	 * @var string Handler ID.
+	 */
+	protected $id = 'rank-math';
+
+	/**
+	 * Run the integration.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		add_action( 'ss_after_setup_task', [ $this, 'register_sitemap_page' ] );
+
+		$this->include_file( 'handlers/class-ss-rank-math-sitemap-handler.php' );
+	}
+
+	/**
+	 * Register sitemap maps for static export.
+	 *
+	 * @return void
+	 */
+	public function register_sitemap_page() {
+		if ( ! class_exists( '\RankMath\Sitemap\Router' ) ) {
+			return;
+		}
+
+		$url = Router::get_base_url( 'sitemap_index.xml' );
+		Util::debug_log( 'Adding sitemap URL to queue: ' . $url );
+		/** @var \Simply_Static\Page $static_page */
+		$static_page = Page::query()->find_or_initialize_by( 'url', $url );
+		$static_page->set_status_message( __( 'Sitemap URL', 'simply-static' ) );
+		$static_page->found_on_id = 0;
+		$static_page->handler     = Rank_Math_Sitemap_Handler::class;
+		$static_page->save();
+	}
+
+	/**
+	 * Can this integration run?
+	 *
+	 * @return bool
+	 */
+	public function can_run() {
+		return class_exists( 'RankMath' );
+	}
+}

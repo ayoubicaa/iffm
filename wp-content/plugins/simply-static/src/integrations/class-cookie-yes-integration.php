@@ -1,24 +1,50 @@
-<br>
-<font size="1"><table class="xdebug-error xe-uncaught-exception" dir="ltr" border="1" cellspacing="0" cellpadding="1">
-<tr><th align="left" bgcolor="#f57900" colspan="5">
-<span style="background-color: #cc0000; color: #fce94f; font-size: x-large;">( ! )</span> Fatal error: Uncaught Error: Class "Simply_Static\Integration" not found in D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\integrations\class-cookie-yes-integration.php on line <i>7</i>
-</th></tr>
-<tr><th align="left" bgcolor="#f57900" colspan="5">
-<span style="background-color: #cc0000; color: #fce94f; font-size: x-large;">( ! )</span> Error: Class "Simply_Static\Integration" not found in D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\integrations\class-cookie-yes-integration.php on line <i>7</i>
-</th></tr>
-<tr><th align="left" bgcolor="#e9b96e" colspan="5">Call Stack</th></tr>
-<tr>
-<th align="center" bgcolor="#eeeeec">#</th>
-<th align="left" bgcolor="#eeeeec">Time</th>
-<th align="left" bgcolor="#eeeeec">Memory</th>
-<th align="left" bgcolor="#eeeeec">Function</th>
-<th align="left" bgcolor="#eeeeec">Location</th>
-</tr>
-<tr>
-<td bgcolor="#eeeeec" align="center">1</td>
-<td bgcolor="#eeeeec" align="center">0.0001</td>
-<td bgcolor="#eeeeec" align="right">361400</td>
-<td bgcolor="#eeeeec">{main}(  )</td>
-<td title="D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\integrations\class-cookie-yes-integration.php" bgcolor="#eeeeec">...\class-cookie-yes-integration.php<b>:</b>0</td>
-</tr>
-</table></font>
+<?php
+
+namespace Simply_Static;
+
+use voku\helper\SimpleHtmlDom;
+
+class CookieYes_Integration extends Integration {
+
+	/**
+	 * Given plugin handler ID.
+	 *
+	 * @var string Handler ID.
+	 */
+	protected $id = 'cookieyes';
+
+	/**
+	 * Can this integration run?
+	 *
+	 * @return bool
+	 */
+	public function can_run() {
+		return defined( 'CKY_APP_URL' );
+	}
+
+	/**
+	 * Run the integration.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		add_action( 'ss_after_extract_and_replace_urls_in_html', [ $this, 'fix_cookieyes_template' ] );
+	}
+
+	/**
+	 * @param SimpleHtmlDom $dom
+	 *
+	 * @return void
+	 */
+	public function fix_cookieyes_template( $dom ) {
+		$tags = $dom->find( 'script' );
+
+		foreach ( $tags as $tag ) {
+			if ( 'ckyBannerTemplate' !== $tag->getAttribute( 'id' ) ) {
+				continue;
+			}
+
+			$tag->innertext = preg_replace( '/<\\\/i', '<', $tag->innertext );
+		}
+	}
+}

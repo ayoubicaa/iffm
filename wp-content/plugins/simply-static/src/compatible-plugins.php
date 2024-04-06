@@ -1,24 +1,103 @@
-<br>
-<font size="1"><table class="xdebug-error xe-uncaught-exception" dir="ltr" border="1" cellspacing="0" cellpadding="1">
-<tr><th align="left" bgcolor="#f57900" colspan="5">
-<span style="background-color: #cc0000; color: #fce94f; font-size: x-large;">( ! )</span> Fatal error: Uncaught Error: Call to undefined function apply_filters() in D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\compatible-plugins.php on line <i>2</i>
-</th></tr>
-<tr><th align="left" bgcolor="#f57900" colspan="5">
-<span style="background-color: #cc0000; color: #fce94f; font-size: x-large;">( ! )</span> Error: Call to undefined function apply_filters() in D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\compatible-plugins.php on line <i>2</i>
-</th></tr>
-<tr><th align="left" bgcolor="#e9b96e" colspan="5">Call Stack</th></tr>
-<tr>
-<th align="center" bgcolor="#eeeeec">#</th>
-<th align="left" bgcolor="#eeeeec">Time</th>
-<th align="left" bgcolor="#eeeeec">Memory</th>
-<th align="left" bgcolor="#eeeeec">Function</th>
-<th align="left" bgcolor="#eeeeec">Location</th>
-</tr>
-<tr>
-<td bgcolor="#eeeeec" align="center">1</td>
-<td bgcolor="#eeeeec" align="center">0.0001</td>
-<td bgcolor="#eeeeec" align="right">361088</td>
-<td bgcolor="#eeeeec">{main}(  )</td>
-<td title="D:\wamp64\www\iffm\wp-content\plugins\simply-static\src\compatible-plugins.php" bgcolor="#eeeeec">...\compatible-plugins.php<b>:</b>0</td>
-</tr>
-</table></font>
+<?php
+return apply_filters( 'ss_compatible_plugins', array(
+	array( 'slug' => 'jetpack' ),
+	array( 'slug' => 'wordpress-seo' ),
+	array( 'slug' => 'all-in-one-seo-pack' ),
+	array( 'slug' => 'seo-by-rank-math' ),
+	array( 'slug' => 'wp-seopress' ),
+	array( 'slug' => 'google-sitemap-generator' ),
+	array( 'slug' => 'elementor' ),
+	array( 'slug' => 'elementor-pro' ),
+	array( 'slug' => 'essential-addons-for-elementor-lite' ),
+	array( 'slug' => 'elementskit-lite' ),
+	array( 'slug' => 'header-footer-elementor' ),
+	array( 'slug' => 'astra-sites' ),
+	array( 'slug' => 'ultimate-addons-for-gutenberg' ),
+	array( 'slug' => 'classic-editor' ),
+	array( 'slug' => 'tinymce-advanced' ),
+	array( 'slug' => 'updraftplus' ),
+	array( 'slug' => 'duplicator' ),
+	array( 'slug' => 'backwpup' ),
+	array( 'slug' => 'wpvivid-backuprestore' ),
+	array( 'slug' => 'all-in-one-wp-migration' ),
+	array( 'slug' => 'wp-mail-smtp' ),
+	array( 'slug' => 'contact-form-7' ),
+	array( 'slug' => 'contact-form-7-honeypot' ),
+	array( 'slug' => 'wpcf7-recaptcha' ),
+	array( 'slug' => 'cf7-polylang' ),
+	array( 'slug' => 'contact-form-7-multilingual' ),
+	array( 'slug' => 'gravityforms' ),
+	array( 'slug' => 'google-site-kit' ),
+	array( 'slug' => 'duplicate-post' ),
+	array( 'slug' => 'duplicate-page' ),
+	array( 'slug' => 'redirection' ),
+	array( 'slug' => 'really-simple-ssl' ),
+	array( 'slug' => 'limit-login-attempts-reloaded' ),
+	array( 'slug' => 'insert-headers-and-footers' ),
+	array( 'slug' => 'advanced-custom-fields' ),
+	array( 'slug' => 'meta-box' ),
+	array( 'slug' => 'polylang' ),
+	array( 'slug' => 'loco-translate' ),
+	array( 'slug' => 'translatepress-multilingual' ),
+	array( 'slug' => 'sitepress-multilingual-cms' ),
+	array( 'slug' => 'wpml-string-translation' ),
+	array( 'slug' => 'gtranslate' ),
+	array( 'slug' => 'imagify' ),
+	array( 'slug' => 'shortpixel-image-optimiser' ),
+	array( 'slug' => 'webp-express' ),
+	array( 'slug' => 'webp-converter-for-media' ),
+	array( 'slug' => 'wp-optimize' ),
+	array( 'slug' => 'wp-crontrol' ),
+	array( 'slug' => 'query-monitor' ),
+	array( 'slug' => 'better-search-replace' ),
+	array( 'slug' => 'code-snippets' ),
+	array( 'slug' => 'cookie-law-info' ),
+	array( 'slug' => 'uk-cookie-consent' ),
+	array( 'slug' => 'cookiebot' ),
+	array( 'slug' => 'cookie-notice' ),
+	array( 'slug' => 'sassy-social-share' ),
+	array( 'slug' => 'disable-comments' ),
+	array( 'slug' => 'custom-post-type-ui' ),
+	array( 'slug' => 'svg-support' ),
+	array( 'slug' => 'instagram-feed' ),
+	array( 'slug' => 'wp-file-manager' ),
+	array( 'slug' => 'redux-framework' ),
+	array( 'slug' => 'breadcrumb-navxt' ),
+	array( 'slug' => 'smart-slider-3' ),
+	array( 'slug' => 'ml-slider' ),
+	array( 'slug' => 'tablepress' ),
+	array( 'slug' => 'user-role-editor' ),
+	array( 'slug' => 'duracelltomi-google-tag-manager' ),
+	array( 'slug' => 'ga-google-analytics' ),
+	array( 'slug' => 'post-types-order' ),
+	array( 'slug' => 'enable-media-replace' ),
+	array( 'slug' => 'custom-css-js' ),
+	array( 'slug' => 'admin-menu-editor' ),
+	array( 'slug' => 'shortcodes-ultimate' ),
+	array( 'slug' => 'wp-pagenavi' ),
+	array( 'slug' => 'taxonomy-terms-order' ),
+	array( 'slug' => 'nextgen-gallery' ),
+	array( 'slug' => 'limit-login-attempts' ),
+	array( 'slug' => 'limit-login-attempts-reloaded' ),
+	array( 'slug' => 'easy-table-of-contents' ),
+	array( 'slug' => 'table-of-contents-plus' ),
+	array( 'slug' => 'pixelyoursite' ),
+	array( 'slug' => 'font-awesome' ),
+	array( 'slug' => 'add-to-any' ),
+	array( 'slug' => 'kadence-blocks' ),
+	array( 'slug' => 'wp-google-maps' ),
+	array( 'slug' => 'wp-reset' ),
+	array( 'slug' => 'custom-fonts' ),
+	array( 'slug' => 'ad-inserter' ),
+	array( 'slug' => 'leadin' ),
+	array( 'slug' => 'force-regenerate-thumbnails' ),
+	array( 'slug' => 'pdf-embedder' ),
+	array( 'slug' => 'copy-delete-posts' ),
+	array( 'slug' => 'wp-sitemap-page' ),
+	array( 'slug' => 'wp-migrate-db' ),
+	array( 'slug' => 'wp-migrate-db-pro' ),
+	array( 'slug' => 'host-webfonts-local' ),
+	array( 'slug' => 'favicon-by-realfavicongenerator' ),
+	array( 'slug' => 'use-any-font' ),
+) );
+
